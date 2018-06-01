@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>User activation propagation</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="common.js"></script>
+</head>
+<body onload="commonInit('a')">
+  <div class="instruction">
+    <b>Test user activation propagation in frame tree:</b>
+    turn on popups in any frame,
+    then click on any frame to "activate" it,
+    then check the logs for popup success/failure.
+  </div>
+
+  <h1 id="frame-label">Frame</h1>
+
+  <p>
+    <label>Popup per 5sec?</label>
+    <input id="try-checkbox" type="checkbox"></input>
+  </p>
+
+  <div id="log"><b>Log:</b> </div>
+
+  <iframe
+    src="subframeA1.html"
+    sandbox="allow-same-origin allow-scripts allow-popups">
+  </iframe>
+
+  <iframe
+    src="https://www.example.com"
+    style="border: 2px solid blue;"
+    sandbox="allow-same-origin allow-scripts allow-popups">
+  </iframe>
+</body>
+</html>

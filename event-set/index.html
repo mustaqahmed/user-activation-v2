@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>User activation event-set tester</title>
+<style>
+  #target {
+    width: 350px;
+    height: 5em;
+    background-color: lightgreen;
+    border: 2px solid green;
+    padding: 5px;
+  }
+</style>
+<script>
+  var eventList = [
+    "#group mouse events",
+    "auxclick",
+    "click",
+    "contextmenu",
+    "dblclick",
+    "mousedown",
+    "mousemove",
+    "mouseup",
+
+    "#group pointer events",
+    "pointerdown",
+    "pointermove",
+    "pointerup",
+
+    "#group touch events",
+    "touchend",
+    "touchmove",
+    "touchstart",
+
+    "#group keyboard events",
+    "keydown",
+    "keypress",
+    "keyup",
+
+    "#group secondary/follow-up events",
+    "change",
+    "compositionend",
+    "compositionstart",
+    "compositionupdate",
+    "input",
+    "reset",
+    "submit",
+  ];
+
+  function $(id) {
+      return document.getElementById(id);
+  }
+
+  function log(msg) {
+    $("log").innerHTML += (msg + "<br> ");
+  }
+
+  function callWindowOpen(label) {
+    var link = "http://www.example.com/?label=" + label;
+    var result = window.open(link);
+      log("window.open on '" + label + "' " + (result ? "success" : "failure"));
+  }
+
+  function init() {
+    var optGroupElem = undefined;
+
+    eventList.forEach(function(eventName) {
+      if (eventName.startsWith("#group")) {
+        optGroupElem = document.createElement("optgroup");
+        optGroupElem.label = eventName.replace("#group ", "");
+        $("select-event").add(optGroupElem, null);
+
+      } else {
+        // Populate event option
+        var eventOptionElem = document.createElement("option");
+        eventOptionElem.value = eventOptionElem.text = eventName;
+        optGroupElem.appendChild(eventOptionElem);
+
+        // Add event listener
+        $("target").addEventListener(eventName, function(e) {
+          if (eventName !== $("select-event").options[$("select-event").selectedIndex].value)
+            return;
+
+          switch($("triggered-api").options[$("triggered-api").selectedIndex].value) {
+            case "window.open":
+              callWindowOpen(e.type);
+              break;
+          }
+        });
+      }
+    });
+  }
+</script>
+</head>
+<body onload="init()">
+  <p>
+    <label>Triggering event:</label>
+    <select id="select-event"></select>
+  </p>
+  <p>
+    <label>Triggered API:</label>
+    <select id="triggered-api">
+      <option value="window.open">window.open</option>
+    </select>
+  </p>
+  <p>
+    <textarea id="target">
+Trigger event here, through click/tap//swipe/keypress etc.
+
+Trigger event here, through click/tap//swipe/keypress etc.
+
+Trigger event here, through click/tap//swipe/keypress etc.
+    </textarea>
+  </p>
+  <div id="log"><b>Log:</b><br></div>
+</body>
+</html>

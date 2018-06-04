@@ -4,7 +4,7 @@
 <title>User activation event-set tester</title>
 <style>
   #target {
-    width: 350px;
+    width: 400px;
     height: 5em;
     background-color: lightyellow;
     border: 2px solid green;
@@ -37,7 +37,7 @@
     "keypress",
     "keyup",
 
-    "#group secondary/follow-up events",
+    "#group other events",
     "change",
     "compositionend",
     "compositionstart",
@@ -82,7 +82,12 @@
 
         // Add event listener
         $("target").addEventListener(eventName, function(e) {
-          if (eventName !== $("select-event").options[$("select-event").selectedIndex].value)
+          let eventSelected = false;
+          for (let selectedOption of $("select-event").selectedOptions) {
+            if (eventName == selectedOption.value)
+              eventSelected = true;
+          }
+          if (!eventSelected)
             return;
 
           switch($("triggered-api").options[$("triggered-api").selectedIndex].value) {
@@ -102,14 +107,13 @@
 </head>
 <body onload="init()">
   <p>
-    <label>Triggering event:</label>
-    <select id="select-event"></select>
-  </p>
-  <p>
-    <label>Triggered API:</label>
+    <label>Test event(s):</label>
+    <select id="select-event" multiple></select>
+    &emsp;
+    <label>Test API:</label>
     <select id="triggered-api">
       <option value="window.open">window.open</option>
-      <option value="none">none</option>
+      <option value="none">-none-</option>
     </select>
   </p>
   <p>

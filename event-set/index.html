@@ -12,6 +12,8 @@
   }
 </style>
 <script>
+  const userAgentIsEdge = (navigator.userAgent.indexOf("Edge") >= 0);
+
   let eventList = [
     "#group mouse events",
     "auxclick",
@@ -80,16 +82,20 @@
 
     eventList.forEach(function(eventName) {
       if (eventName.startsWith("#group")) {
-        if (optGroupElem !== undefined)
+        if (!userAgentIsEdge) {
+          optGroupElem = document.createElement("optgroup");
+          optGroupElem.label = eventName.replace("#group ", "");
           $("select-event").add(optGroupElem, null);
-        optGroupElem = document.createElement("optgroup");
-        optGroupElem.label = eventName.replace("#group ", "");
+        }
 
       } else {
         // Populate event option
         let eventOptionElem = document.createElement("option");
         eventOptionElem.value = eventOptionElem.text = eventName;
-        optGroupElem.appendChild(eventOptionElem);
+        if (!userAgentIsEdge)
+          optGroupElem.appendChild(eventOptionElem);
+        else
+          $("select-event").add(eventOptionElem, null);
 
         // Add event listener
         $("target").addEventListener(eventName, function(e) {
@@ -108,9 +114,6 @@
         });
       }
     });
-
-    if (optGroupElem !== undefined)
-      $("select-event").add(optGroupElem, null);
   }
 </script>
 </head>

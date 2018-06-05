@@ -55,6 +55,16 @@
     $("log").innerHTML += (msg + "<br> ");
   }
 
+  function hasSelectedValue(selectElem, queryValue) {
+    let selectedOptions = selectElem.selectedOptions;
+    // JS for-each iterator doesn't work in Edge!
+    for (let i = selectedOptions.length - 1; i >= 0; i--) {
+      if (selectedOptions[i].value == queryValue)
+        return true;
+    }
+    return false;
+  }
+
   function callWindowOpen(label) {
     let link = "http://www.example.com/?label=" + label;
     let result = window.open(link);
@@ -70,9 +80,10 @@
 
     eventList.forEach(function(eventName) {
       if (eventName.startsWith("#group")) {
+        if (optGroupElem !== undefined)
+          $("select-event").add(optGroupElem, null);
         optGroupElem = document.createElement("optgroup");
         optGroupElem.label = eventName.replace("#group ", "");
-        $("select-event").add(optGroupElem, null);
 
       } else {
         // Populate event option
@@ -82,12 +93,7 @@
 
         // Add event listener
         $("target").addEventListener(eventName, function(e) {
-          let eventSelected = false;
-          for (let selectedOption of $("select-event").selectedOptions) {
-            if (eventName == selectedOption.value)
-              eventSelected = true;
-          }
-          if (!eventSelected)
+          if (!hasSelectedValue($("select-event"), eventName))
             return;
 
           switch($("triggered-api").options[$("triggered-api").selectedIndex].value) {
@@ -102,6 +108,9 @@
         });
       }
     });
+
+    if (optGroupElem !== undefined)
+      $("select-event").add(optGroupElem, null);
   }
 </script>
 </head>

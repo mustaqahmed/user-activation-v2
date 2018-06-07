@@ -94,7 +94,7 @@ function callNone(label) {
 function addEventListener() {
   eventList.forEach(function(eventName) {
     if (!eventName.startsWith(groupPrefix)) {
-      $("target").addEventListener(eventName, function(e) {
+      $("event-target").addEventListener(eventName, function(e) {
         if (!hasSelectedValue($("select-event"), eventName))
           return;
 

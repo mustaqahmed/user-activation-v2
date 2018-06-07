@@ -1,7 +1,10 @@
-#target {
+textarea {
   width: 400px;
   height: 5em;
   background-color: lightyellow;
   border: 2px solid green;
-  padding: 5px;
+}
+
+form {
+  padding: 10px;
 }

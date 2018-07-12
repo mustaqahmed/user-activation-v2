@@ -57,14 +57,11 @@ with per-frame states as described above.  This effectively:
 3. fuses multiple user interactions within a small time interval into a single
    activation.
 
-Design docs:
+### Design docs
+
+For further details on the model and Chromium implementation, see:
 - [Main design](https://docs.google.com/document/d/1erpl1yqJlc1pH0QvVVmi1s3WzqQLsEXTLLh6VuYp228/edit?usp=sharing).
 - [Enhancements for out-of-process iframes](https://docs.google.com/document/d/1XL3vCedkqL65ueaGVD-kfB5RnnrnTaxLc7kmU91oerg/edit?usp=sharing).
-
-## Related proposals
-- [JS API for querying User Activation
-  states](https://github.com/dtapuska/useractivation): this is somewhat related
-  to the UAv2 proposal.
 
 ## Demos
 - [Activation propagation
@@ -75,3 +72,8 @@ Design docs:
   events](https://mustaqahmed.github.io/user-activation-v2/event-set/): Used for
   cataloging differences among major browsers in the set of events that define
   activation.
+
+## Related proposals
+- [JS API for querying User Activation
+  states](https://github.com/dtapuska/useractivation): this is independent but
+  somewhat related to UAv2.

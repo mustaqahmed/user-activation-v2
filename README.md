@@ -1,5 +1,5 @@
 # User Activation v2 (UAv2)
-A frame-hierarchy-based model to track active user interaction.
+A frame-hierarchy based model to track active user interaction.
 
 
 ## Overview
@@ -19,9 +19,9 @@ fix the broken situation in the web today because it needs to add important
 details and doesn't fully reflect any current implementation.
 
 User Activation v2 (UAv2) introduces a new user activation model that is simple
-enough for cross-browser implementation, and hence deserves a new spec from
-scratch.  We prototyped the model in Chromium behind the flag
-`--enable-features=UserActivationV2` in
+enough for cross-browser implementation, and hence calls for a new spec from
+scratch as a long term fix for the Web.  We prototyped the model in Chromium
+behind the flag `--enable-features=UserActivationV2` in
 [M67](https://www.chromestatus.com/features/5722065667620864).
 
 
@@ -33,16 +33,15 @@ The new model maintains a two-bit user activation state at every `window` object
 in the frame hierarchy:
 - `HasSeenUserActivation`: This is a sticky bit for the APIs that only needs a
   signal on historical user activation.  The bit gets set on first user action,
-  and is never reset during the frame’s lifetime.  For example, [`<video>
+  and is never reset during the frame’s lifetime.  Example APIs: [`<video>
   autoplay`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video)
   and
-  [`Navigator.vibrate()`](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/vibrate)
-  are potential users of this bit.
+  [`Navigator.vibrate()`](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/vibrate).
 
 - `HasConsumableUserActivation`: This is a transient bit for the APIs that need
   limited invocation per user interaction.  The bit gets set on every user
-  interaction, and is reset either after a certain time limit defined by the
-  browser or through a call to an activation-consuming API
+  interaction, and is reset either after an expiry time defined by the browser
+  or through a call to an activation-consuming API
   (e.g. [`window.open()`](https://developer.mozilla.org/en-US/docs/Web/API/Window/open)).
 
 
@@ -65,8 +64,8 @@ with per-frame states as described above.  This effectively:
 
 2. changes activation visibility from stack-scoped to frame-scoped, and
 
-3. fuses multiple user interactions within a small time interval into a single
-   activation.
+3. fuses multiple user interactions within the expiry time interval into a
+   single activation.
 
 
 ### Design docs
@@ -78,57 +77,55 @@ For further details on the model and Chromium implementation, see:
 
 ## Classifying user activation gated APIs
 
-Browsers today already show different "levels of access control" for
-activation-dependent APIs, and we are not aware of _any_ definition or even
-documentation of these levels.  The UAv2 model induces a classification of user
-APIs into four clearly defined classes, making it easy for any user API to spec
-its dependence on user activation in a concise yet precise manner.  Our
-prototype implementation in Chromium preserved all the APIs' past behavior after
-a few (mostly minor) changes.
-
-Below are the four classes, sorted by their "strength of dependence" on user
-activation (from strongest to weakest):
+Modern browsers already show different levels activation-dependence for
+activation-aware APIs, and the Web needs a spec for this behavior.  The UAv2
+model induces a classification of user APIs into three distinct levels, making
+it easy for any user API to spec its activation-dependence in a concise yet
+precise manner.  The levels are as follows, sorted by their "strength of
+dependence" on user activation (from strongest to weakest):
 
 - Transient activation consuming APIs: These APIs require the transient bit, and
   they consume the bit in each call to prevent multiple calls per user
-  activation.  In most (all?)  browsers today,
-  [`window.open()`](https://developer.mozilla.org/en-US/docs/Web/API/Window/open)
-  falls in this category.
+  activation.
+  E.g. [`window.open()`](https://developer.mozilla.org/en-US/docs/Web/API/Window/open)
+  is most (all?)  browsers today.
 
 - Transient activation gated APIs: These APIs require the transient bit but
-  don't consume the bit, so multiple calls are allowed per user activation until
-  the transient bit expires.
+  don't consume it, so multiple calls are allowed per user activation until the
+  transient bit expires.  E.g.
   [`Element.requestFullscreen()`](https://developer.mozilla.org/en-US/docs/Web/API/Element/requestFullScreen)
-  falls in this category in many browsers (including Chromium).
+  in Chromium and other many browsers.
 
 - Sticky activation gated APIs: These APIs require the sticky activation bit, so
-  they are blocked only until the very first user activation.  In Chromium,
-  [`<video>
-  autoplay`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video) is
-  one such API.
+  they are blocked until the very first user activation.  E.g. [`<video>
+  autoplay`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video)
+  and
+  [`Navigator.vibrate()`](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/vibrate)
+  in Chromium.
 
-- Activation independent APIs: These are all the rest of the APIs, that are not
-  blocked without a user activation in any way (e.g.,
-  [`Document.write()`](https://developer.mozilla.org/en-US/docs/Web/API/Document/write)).
+Our prototype implementation preserved all the APIs' past behavior in
+Chromium after a few (mostly minor) changes.
 
 
-## Demos
+## Demo
 
-For these demos, first enable UAv2 in the latest Chrome (M67+) through
+For the demo, first enable UAv2 in the latest Chrome (M67+) through
 `chrome://flags/#user-activation-v2` or the command-line flag
 `--enable-features=UserActivationV2`.
 
 - [Activation propagation
-  test](https://mustaqahmed.github.io/user-activation-v2/propagation/): Shows
-  User Activation v2 state changes across the frame tree through user
-  interaction and subsequent consumption through popups.
-- [Determining activation-defining
-  events](https://mustaqahmed.github.io/user-activation-v2/event-set/): Used for
-  cataloging differences among major browsers in the set of events that define
-  activation.
+  demo](https://mustaqahmed.github.io/user-activation-v2/propagation/): Shows
+  UAv2 state changes across the frame tree through user interaction and
+  subsequent consumption through popups.
 
 
-## Related proposals
+## Related links
+
 - [JS API for querying User Activation
   states](https://github.com/dtapuska/useractivation): this is independent but
   somewhat related to UAv2.
+
+- [Determining activation-defining
+  events](https://mustaqahmed.github.io/user-activation-v2/event-set/): Used for
+  [cataloging](https://docs.google.com/spreadsheets/d/1DGXjhQ6D3yZXIePOMo0dsd2agz0t5W7rYH1NwJ-QGJo/edit?usp=sharing)
+  differences among major browsers in the set of events that define activation.

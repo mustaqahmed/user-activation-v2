@@ -113,6 +113,11 @@ activation (from strongest to weakest):
 
 
 ## Demos
+
+For these demos, first enable UAv2 in the latest Chrome (M67+) through
+`chrome://flags/#user-activation-v2` or the command-line flag
+`--enable-features=UserActivationV2`.
+
 - [Activation propagation
   test](https://mustaqahmed.github.io/user-activation-v2/propagation/): Shows
   User Activation v2 state changes across the frame tree through user

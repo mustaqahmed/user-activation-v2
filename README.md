@@ -94,7 +94,7 @@ dependence" on user activation (from strongest to weakest):
   don't consume it, so multiple calls are allowed per user activation until the
   transient bit expires.  E.g.
   [`Element.requestFullscreen()`](https://developer.mozilla.org/en-US/docs/Web/API/Element/requestFullScreen)
-  in Chromium and other many browsers.
+  in Chromium and many other browsers.
 
 - Sticky activation gated APIs: These APIs require the sticky activation bit, so
   they are blocked until the very first user activation.  E.g. [`<video>

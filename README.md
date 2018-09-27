@@ -2,21 +2,43 @@
 A frame-hierarchy based model to track active user interaction.
 
 
-## Overview
+## Introduction
 
-Browsers control access to "abusable" of APIs (e.g. opening popups or vibrating)
-through user activation (or "user gestures").  However, major browsers today
-exhibit widely divergent behavior because each of them has incrementally
-developed its own unique implementation of the idea over a course of many years
-covering many different APIs.  For example, [this
-report](https://docs.google.com/document/d/1hYRTEkfWDl-KO4Y6cG469FBC3nyBy9_SYItZ1EEsXUA/edit?usp=sharing)
-shows that the pop-blocking behavior is inconsistent among major browsers for
-all non-trivial cases.
+### What's a user activation?
+
+The term _user activation_ means the state of a browsing session with respect to
+user actions: an "active" state typically implies either the user is currently
+interacting with the page through some input mechanism (typing, clicking with
+mouse etc.), or the user has completed some interaction since the page got
+loaded.  _User gesture_ is another term frequently used to express the same idea
+(e.g. "allow something only with a user gesture").
+
+Browsers control access to "abusable" of APIs through user activation.  The most
+obvious example of such an API is opening popups through `window.open()`: when
+rogue developers started to abuse the API to open popups arbitrarily, most
+(all?) browsers began to block popups when the user is _not_ actively
+interacting with the page.  Since then, browsers have gradually made many other
+APIs dependent on activation (more precisely, made them _user activation
+gated_), like making an element fullscreen, vibrating a mobile device,
+autoplaying media etc.  To highlight the scope, [~30 different
+APIs](https://docs.google.com/document/d/1mcxB5J_u370juJhSsmK0XQONG2CIE3mvu827O-Knw_Y/edit?usp=sharing)
+in Chrome are user activation gated.
+
+### What's the problem today?
+
+The Web is in a terrible state today in terms of user activation behavior.
+Because each browser has incrementally added user activation dependence to it's
+own set of APIs a course of many years, we see widely divergent behavior among
+major browsers.  For example, pop-blocking behavior is [inconsistent among major
+browsers](https://docs.google.com/document/d/1hYRTEkfWDl-KO4Y6cG469FBC3nyBy9_SYItZ1EEsXUA/edit?usp=sharing)
+for all non-trivial cases of user activation.
 
 More importantly, the [current HTML
 spec](https://html.spec.whatwg.org/#triggered-by-user-activation) can't really
-fix the broken situation in the web today because it needs to add important
-details and doesn't fully reflect any current implementation.
+fix the broken situation in the Web today because it needs to add important
+details and doesn't fully reflect _any_ current implementation.
+
+### How are we proposing to solve the problem?
 
 User Activation v2 (UAv2) introduces a new user activation model that is simple
 enough for cross-browser implementation, and hence calls for a new spec from

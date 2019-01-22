@@ -3,25 +3,8 @@
 <head>
   <title>User Activation v2 with setTimeout</title>
   <link rel="stylesheet" href="styles.css">
+  <script src="common.js"></script>
   <script>
-    function $(id) {
-      return document.getElementById(id);
-    }
-
-    function log(msg, color) {
-      var styleStr = "background-color:" + color;
-
-      $("log").innerHTML += "<span class='log-entry' style='" + styleStr + "'>"
-        + msg + "</span>";
-    }
-
-    function callWindowOpen() {
-      if (window.open("about:blank"))
-        log("popup success", "lightgreen");
-      else
-        log("popup failure", "lightpink");
-    }
-
     function popupAfter100ms() {
       setTimeout(callWindowOpen, 100);
     }

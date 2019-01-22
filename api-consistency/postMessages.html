@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<!--
+  The cross-origin part of this demo is here:
+  https://codepen.io/mustaqahmed/pen/BMaaPo
+-->
+<html>
+<head>
+  <title>User Activation v2 with postMessages</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="common.js"></script>
+  <script>
+    var selected_message = "message_2";
+
+    function init() {
+      $("message-select").addEventListener("change", e => {
+        log("changed selection", "beige");
+        selected_message = e.target.value;
+      });
+
+      window.addEventListener("message", (e) => {
+        log("received: " + e.data, "yellow");
+        if (e.data === selected_message)
+          callWindowOpen();
+      });
+    }
+  </script>
+</head>
+<body onload="init()">
+  <div class="instruction">
+    <b>With User Activation v2, clicking the button on the cross-origin
+    sub-frame opens a popup window</b>, no matter which message triggers the
+    popup:&emsp;
+      1.&nbsp;Choose a message in the top frame.&emsp;
+      2.&nbsp;Wait a few seconds.&emsp;
+      3.&nbsp;Click on the button in the sub-frame.
+  </div>
+
+  <h1>Top frame in github.io</h1>
+
+  <p>
+    <label for="message-select">Pick which message should open a popup:</label>
+    <select id="message-select">
+      <option value="message_1">first</option>
+      <option value="message_2" selected>second</option>
+    </select>
+  </p>
+
+  <iframe id="iframe" src="https://s.codepen.io/mustaqahmed/full/BMaaPo"></iframe>
+
+  <div id="log"><b>Log:</b> </div>
+</body>
+</html>

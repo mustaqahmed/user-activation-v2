@@ -140,6 +140,10 @@ For the demo, first enable UAv2 in the latest Chrome (M67+) through
   UAv2 state changes across the frame tree through user interaction and
   subsequent consumption through popups.
 
+- [User Activation v2 with
+  `setTimeout`](https://mustaqahmed.github.io/user-activation-v2/api-consistency/setTimeout.html):
+  Shows consistent availability of user activation through chaining of
+  `setTimeout()` calls.
 
 ## Related links
 

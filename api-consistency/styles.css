@@ -1,0 +1,14 @@
+#log {
+  border: 1px solid lightgrey;
+  margin: 5px;
+}
+
+.log-entry {
+  margin: 3px;
+}
+
+.instruction {
+  border: 1px solid grey;
+  background-color: lightgrey;
+  padding: 1px;
+}

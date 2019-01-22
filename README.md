@@ -141,9 +141,14 @@ For the demo, first enable UAv2 in the latest Chrome (M67+) through
   subsequent consumption through popups.
 
 - [User Activation v2 with
-  `setTimeout`](https://mustaqahmed.github.io/user-activation-v2/api-consistency/setTimeout.html):
+  setTimeouts](https://mustaqahmed.github.io/user-activation-v2/api-consistency/setTimeout.html):
   Shows consistent availability of user activation through chaining of
   `setTimeout()` calls.
+
+- [User Activation v2 with
+  postMessages](https://mustaqahmed.github.io/user-activation-v2/api-consistency/postMessages.html):
+  Shows consistent availability of user activation through `postMessage()` call
+  order.
 
 ## Related links
 

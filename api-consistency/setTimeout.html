@@ -3,52 +3,53 @@
 <head>
   <title>User Activation v2 with setTimeout</title>
   <link rel="stylesheet" href="styles.css">
+  <script>
+    function $(id) {
+      return document.getElementById(id);
+    }
+
+    function log(msg, color) {
+      var styleStr = "background-color:" + color;
+
+      $("log").innerHTML += "<span class='log-entry' style='" + styleStr + "'>"
+        + msg + "</span>";
+    }
+
+    function callWindowOpen() {
+      if (window.open("about:blank"))
+        log("popup success", "lightgreen");
+      else
+        log("popup failure", "lightpink");
+    }
+
+    function popupAfter100ms() {
+      setTimeout(callWindowOpen, 100);
+    }
+
+    function asyncPopupAfter100ms() {
+      setTimeout(popupAfter100ms, 0);
+    }
+
+    function buttonClickHandler(e) {
+      log(e.target.id + " clicked", "yellow");
+      if (e.target.id == "button1")
+        popupAfter100ms();
+      else if (e.target.id == "button2")
+        asyncPopupAfter100ms();
+      else
+        log("error", "red");
+    }
+
+    function init() {
+      $("button1").addEventListener("click", buttonClickHandler);
+      $("button2").addEventListener("click", buttonClickHandler);
+    }
+  </script>
 </head>
-<script>
-function $(id) {
-  return document.getElementById(id);
-}
-
-function log(msg, color) {
-  var styleStr = "background-color:" + color;
-
-  $("log").innerHTML += "<span class='log-entry' style='" + styleStr + "'>"
-    + msg + "</span>";
-}
-
-function callWindowOpen() {
-  if (window.open("about:blank"))
-    log("popup success", "lightgreen");
-  else
-    log("popup failure", "lightpink");
-}
-
-function popupAfter100ms() {
-  setTimeout(callWindowOpen, 100);
-}
-
-function asyncPopupAfter100ms() {
-  setTimeout(popupAfter100ms, 0);
-}
-
-function buttonClickHandler(e) {
-  log(e.target.id + " clicked", "yellow");
-  if (e.target.id == "button1")
-    popupAfter100ms();
-  else if (e.target.id == "button2")
-    asyncPopupAfter100ms();
-  else
-    log("error", "red");
-}
-
-function init() {
-  $("button1").addEventListener("click", buttonClickHandler);
-  $("button2").addEventListener("click", buttonClickHandler);
-}
-</script>
 <body onload="init()">
   <div class="instruction">
-    <b>With User Activation v2, clicking on either of these buttons opens a popup window.</b>
+    <b>With User Activation v2, either of these buttons can open a popup
+    window.</b>
   </div>
 
   <p>

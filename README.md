@@ -160,7 +160,7 @@ For the demo, first enable UAv2 in the latest Chrome (M67+) through
 ## Related links
 
 - [Activation Transfer through
-  postMessages](https://mustaqahmed.github.io/user-activation-delegation): An
+  postMessages](https://github.com/mustaqahmed/user-activation-delegation): An
   API to allow developers transfer user activation state to any target `window`
   in the frame tree.
 

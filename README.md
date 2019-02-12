@@ -10,8 +10,9 @@ The term _user activation_ means the state of a browsing session with respect to
 user actions: an "active" state typically implies either the user is currently
 interacting with the page through some input mechanism (typing, clicking with
 mouse etc.), or the user has completed some interaction since the page got
-loaded.  _User gesture_ is another term frequently used to express the same idea
-(e.g. "allow something only with a user gesture").
+loaded.  (_User gesture_ is a misleading term occasionally used to express the
+same idea, e.g. "allowing something only with a user gesture", even though a
+swipe gesture doesn't typically activate a page.)
 
 Browsers control access to "abusable" of APIs through user activation.  The most
 obvious example of such an API is opening popups through `window.open()`: when

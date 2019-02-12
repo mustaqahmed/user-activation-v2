@@ -55,7 +55,8 @@ The new model maintains a two-bit user activation state at every `window` object
 in the frame hierarchy:
 - `HasSeenUserActivation`: This is a sticky bit for the APIs that only needs a
   signal on historical user activation.  The bit gets set on first user action,
-  and is never reset during the frame’s lifetime.  Example APIs: [`<video>
+  and is never reset during the lifetime of the `window` object.  Example APIs:
+  [`<video>
   autoplay`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video)
   and
   [`Navigator.vibrate()`](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/vibrate).
@@ -69,11 +70,12 @@ in the frame hierarchy:
 
 ### State propagation across frames
 
-- Any user interaction in a frame sets the activation bits in all ancestor
-  frames (including the frame being interacted with).
+- Any user interaction in a `window` object sets the activation bits in the
+  `window` objects of all ancestor frames (including the `window` being
+  interacted with).
 
-- Any consumption of the transient bit resets the transient bits in the whole
-  frame tree.
+- Any consumption of the transient bit resets the transient bits in the `window`
+  objects of the whole frame tree.
 
 
 ### Major functional changes

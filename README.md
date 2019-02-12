@@ -25,6 +25,7 @@ autoplaying media etc.  To highlight the scope, [~30 different
 APIs](https://docs.google.com/document/d/1mcxB5J_u370juJhSsmK0XQONG2CIE3mvu827O-Knw_Y/edit?usp=sharing)
 in Chrome are user activation gated.
 
+
 ### What's the problem today?
 
 The Web is in a terrible state today in terms of user activation behavior.
@@ -38,6 +39,7 @@ More importantly, the [current HTML
 spec](https://html.spec.whatwg.org/#triggered-by-user-activation) can't really
 fix the broken situation in the Web today because it needs to add important
 details and doesn't fully reflect _any_ current implementation.
+
 
 ### How are we proposing to solve the problem?
 
@@ -73,7 +75,8 @@ in the frame hierarchy:
 
 - Any user interaction in a `window` object sets the activation bits in the
   `window` objects of all ancestor frames (including the `window` being
-  interacted with).
+  interacted with).  (See Related Links below for an API to modify this default
+  behavior.)
 
 - Any consumption of the transient bit resets the transient bits in the `window`
   objects of the whole frame tree.
@@ -153,11 +156,17 @@ For the demo, first enable UAv2 in the latest Chrome (M67+) through
   Shows consistent availability of user activation through `postMessage()` call
   order.
 
+
 ## Related links
 
+- [Activation Transfer through
+  postMessages](https://mustaqahmed.github.io/user-activation-delegation): An
+  API to allow developers transfer user activation state to any target `window`
+  in the frame tree.
+
 - [JS API for querying User Activation
-  states](https://github.com/dtapuska/useractivation): this is independent but
-  somewhat related to UAv2.
+  states](https://github.com/dtapuska/useractivation): An API to determine the
+  state of user activation.  This is independent but somewhat related to UAv2.
 
 - [Determining activation-defining
   events](https://mustaqahmed.github.io/user-activation-v2/event-set/): Used for

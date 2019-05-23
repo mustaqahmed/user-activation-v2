@@ -5,44 +5,41 @@
   <link rel="stylesheet" href="styles.css">
   <script src="common.js"></script>
   <script>
-    function popupAfter100ms() {
-      setTimeout(callWindowOpen, 100);
-    }
-
-    function asyncPopupAfter100ms() {
-      setTimeout(popupAfter100ms, 0);
-    }
-
-    function buttonClickHandler(e) {
-      log(e.target.id + " clicked", "yellow");
-      if (e.target.id == "button1")
-        popupAfter100ms();
-      else if (e.target.id == "button2")
-        asyncPopupAfter100ms();
+    function callWithSetTimeoutChain(depth) {
+      if (depth <= 0)
+        callWindowOpen();
       else
-        log("error", "red");
+        setTimeout(() => callWithSetTimeoutChain(depth-1), 100);
     }
 
     function init() {
-      $("button1").addEventListener("click", buttonClickHandler);
-      $("button2").addEventListener("click", buttonClickHandler);
+      for (let i = 0; i < 3; i++) {
+        $("button" + i).addEventListener("click", e => {
+          log(e.target.id + " clicked", "yellow");
+          callWithSetTimeoutChain(i+1);
+        });
+      }
     }
   </script>
 </head>
 <body onload="init()">
   <div class="instruction">
-    <b>With User Activation v2, either of these buttons can open a popup
-    window.</b>
+    <b>With User Activation v2, any these buttons can open a popup window.</b>
   </div>
 
   <p>
+    <input id="button0" type="button" value="Button 0" />
+    opens a popup through a direct setTimeout() call.
+  </p>
+
+  <p>
     <input id="button1" type="button" value="Button 1" />
-    opens a popup after a 100ms delay.
+    opens a popup through a nested setTimeout() call.
   </p>
 
   <p>
     <input id="button2" type="button" value="Button 2" />
-    opens a popup asynchronously after a 100ms delay.
+    opens a popup through a doubly-nested setTimeout() call.
   </p>
 
   <div id="log"><b>Log:</b> </div>

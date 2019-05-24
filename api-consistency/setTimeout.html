@@ -4,19 +4,22 @@
   <title>User Activation v2 with setTimeout</title>
   <link rel="stylesheet" href="styles.css">
   <script src="common.js"></script>
+  <script src="api-selector.js"></script>
   <script>
     function callWithSetTimeoutChain(depth) {
       if (depth <= 0)
-        callWindowOpen();
+        callSelectedApi();
       else
         setTimeout(() => callWithSetTimeoutChain(depth-1), 100);
     }
 
     function init() {
+      setupApiSelector();
+
       for (let i = 0; i < 3; i++) {
         $("button" + i).addEventListener("click", e => {
           log(e.target.id + " clicked", "yellow");
-          callWithSetTimeoutChain(i+1);
+          callWithSetTimeoutChain(i);
         });
       }
     }
@@ -24,22 +27,33 @@
 </head>
 <body onload="init()">
   <div class="instruction">
-    <b>With User Activation v2, any these buttons can open a popup window.</b>
+    <p><b>Steps:</b> (a) Select an API to test.
+      (b) Click the button for the desired setTimeout call depth.</p>
+    <p><b>Expectation:</b> Any these buttons should successsfully call the test API.
+      User Activation v2 works in each case.</p>
   </div>
 
   <p>
+    <label>User-activation-gated API to test:</label>
+    <select id="test-api">
+    </select>
+  </p>
+
+  <hr />
+
+  <p>
     <input id="button0" type="button" value="Button 0" />
-    opens a popup through a direct setTimeout() call.
+    tests through a setTimeout() call.
   </p>
 
   <p>
     <input id="button1" type="button" value="Button 1" />
-    opens a popup through a nested setTimeout() call.
+    tests through setTimeout() calls of depth 2.
   </p>
 
   <p>
     <input id="button2" type="button" value="Button 2" />
-    opens a popup through a doubly-nested setTimeout() call.
+    tests through setTimeout() calls of depth 3.
   </p>
 
   <div id="log"><b>Log:</b> </div>

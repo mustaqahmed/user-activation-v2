@@ -8,18 +8,18 @@
   <script>
     function callWithSetTimeoutChain(depth) {
       if (depth <= 0)
-        callSelectedApi();
+        apiSelector.callAndLog();
       else
         setTimeout(() => callWithSetTimeoutChain(depth-1), 100);
     }
 
     function init() {
-      setupApiSelector();
+      apiSelector.setup();
 
       for (let i = 0; i < 3; i++) {
         $("button" + i).addEventListener("click", e => {
           log(e.target.id + " clicked", "yellow");
-          callWithSetTimeoutChain(i);
+          callWithSetTimeoutChain(i+1);
         });
       }
     }
@@ -39,7 +39,7 @@
     </select>
   </p>
 
-  <hr />
+  <div class="api_target" id="test-api-target"></div>
 
   <p>
     <input id="button0" type="button" value="Button 0" />

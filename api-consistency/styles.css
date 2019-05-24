@@ -1,6 +1,6 @@
 iframe {
-  height: 250px;
   border: 2px solid blue;
+  height: 250px;
 }
 
 #log {
@@ -13,7 +13,13 @@ iframe {
 }
 
 .instruction {
-  border: 1px solid grey;
   background-color: lightgrey;
+  border: 1px solid grey;
+  padding: 1px;
+}
+
+.api_target {
+  border: 1px solid lightgrey;
+  color: grey;
   padding: 1px;
 }

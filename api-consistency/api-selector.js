@@ -64,10 +64,13 @@
   ];
 
   let selectedApiObject = undefined;
+  const localStorageKey = "selectedApiLabel";
 
   function apiSelectElemChanged() {
     const apiSelectElem = $("test-api");
+
     let selectedApiLabel = apiSelectElem.options[apiSelectElem.selectedIndex].value;
+    localStorage[localStorageKey] = selectedApiLabel;
 
     apiList.forEach(apiObject => {
       let selected = (selectedApiLabel == apiObject.label);
@@ -91,6 +94,8 @@
       let apiOptionElem = document.createElement("option");
       apiOptionElem.value = apiObject.label;
       apiOptionElem.text = apiObject.label;
+      apiOptionElem.selected =
+	  (localStorage[localStorageKey] == apiObject.label);
       apiSelectElem.add(apiOptionElem);
 
       if (apiObject.targetInnerHtml) {

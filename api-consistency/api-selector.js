@@ -33,6 +33,10 @@
     });
   }
 
+  function audioPlayPromise(elem) {
+    return elem.play();
+  }
+
   let apiList = [
     {
       label: "window.open",
@@ -42,12 +46,20 @@
     {
       label: "elem.requestFullscreen",
       promise: requestFullscreenPromise,
-      targetInnerHtml: "This div would go fullscreen.  Do not interact here.",
+      targetInnerHtml: "This div would go fullscreen.",
     },
     {
       label: "navigator.vibrate",
       promise: navigatorVibratePromise,
       targetInnerHtml: undefined,
+    },
+    {
+      label: "audio.play",
+      promise: audioPlayPromise,
+      targetInnerHtml: "<audio controls " +
+	  "src='https://interactive-examples.mdn.mozilla.net/media/examples/t-rex-roar.mp3'>" +
+	  "Audio is not supported." +
+	  "</audio>",
     },
   ];
 
@@ -70,7 +82,9 @@
 
   function public_setup() {
     const apiSelectElem = $("test-api");
+
     const apiTargetElem = $("test-api-target");
+    apiTargetElem.innerHTML = "<div>Do not interact here.</div>";
 
     apiList.forEach(apiObject => {
       // Add an option.
@@ -93,11 +107,11 @@
   }
 
   function logApiSuccess() {
-    log("API success", "lightgreen");
+    log(selectedApiObject.label + " success", "lightgreen");
   }
 
   function logApiFailure() {
-    log("API failure", "lightpink");
+    log(selectedApiObject.label + " failure", "lightpink");
   }
 
   function public_callAndLog() {
@@ -105,8 +119,14 @@
       log("No API selected", "lightgrey");
       return;
     }
-    selectedApiObject.promise($(labelToTargetId(selectedApiObject.label)))
-        .then(logApiSuccess).catch(logApiFailure);
+
+    let apiCallElem = $(labelToTargetId(selectedApiObject.label));
+    // For some API (e.g. audio.play()), the call has to be on a child of the <div>.
+    if (apiCallElem && apiCallElem.firstElementChild)
+      apiCallElem = apiCallElem.firstElementChild;
+
+    selectedApiObject.promise(apiCallElem)
+	.then(logApiSuccess).catch(logApiFailure);
   }
 
   function initialize() {

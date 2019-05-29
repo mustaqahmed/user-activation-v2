@@ -1,10 +1,11 @@
 iframe {
   border: 2px solid blue;
   height: 250px;
+  width: 90%;
 }
 
 #log {
-  border: 1px solid lightgrey;
+  border: 1px solid black;
   margin: 5px;
 }
 

@@ -146,15 +146,19 @@ For the demo, first enable UAv2 in the latest Chrome (M67+) through
   UAv2 state changes across the frame tree through user interaction and
   subsequent consumption through popups.
 
-- [User Activation v2 with
-  setTimeouts](https://mustaqahmed.github.io/user-activation-v2/api-consistency/setTimeout.html):
-  Shows consistent availability of user activation through chaining of
-  `setTimeout()` calls.
+- Consistent availability of user activation state:
 
-- [User Activation v2 with
-  postMessages](https://mustaqahmed.github.io/user-activation-v2/api-consistency/postMessages.html):
-  Shows consistent availability of user activation through `postMessage()` call
-  order.
+  - [UAv2 with
+    setTimeouts](https://mustaqahmed.github.io/user-activation-v2/api-consistency/setTimeout.html):
+    Shows consistency through chaining of `setTimeout()` calls.
+
+  - [UAv2 with postMessages to
+    parent](https://mustaqahmed.github.io/user-activation-v2/api-consistency/postMessages.html):
+    Shows consistency through multiple child-to-parent `postMessage()` calls.
+
+  - [UAv2 with postMessages to
+    child](https://mustaqahmed.github.io/user-activation-v2/api-consistency/postMessages2.html):
+    Shows consistency through multiple parent-to-child `postMessage()` calls.
 
 
 ## Related links

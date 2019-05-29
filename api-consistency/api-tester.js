@@ -13,9 +13,9 @@
       promise: () => {
 	return new Promise((resolve, reject) => {
 	  if (window.open("about:blank"))
-          resolve();
+            resolve();
 	  else
-          reject();
+            reject();
 	});
       },
       targetInnerHtml: undefined,
@@ -40,9 +40,9 @@
       promise: () => {
 	return new Promise((resolve, reject) => {
 	  if (navigator.vibrate(100))
-          resolve();
+            resolve();
 	  else
-          reject();
+            reject();
 	});
       },
       targetInnerHtml: undefined,

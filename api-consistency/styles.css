@@ -18,8 +18,9 @@ iframe {
   padding: 1px;
 }
 
-.api_target {
+#api-test-area {
   border: 1px solid lightgrey;
   color: grey;
+  margin: 10px;
   padding: 10px;
 }

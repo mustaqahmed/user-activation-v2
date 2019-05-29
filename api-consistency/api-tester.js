@@ -94,9 +94,9 @@
   // API caller interface.
 
   function public_setupApiCaller() {
-    const apiTargetElem = $("test-api-target");
+    const apiTargetElem = $("api-test-area");
     apiTargetElem.innerHTML = "<div>" +
-	"API test area.  Do not interact with anything here." +
+	"<strong>API test area.  Do not interact with anything here.</strong>" +
 	"</div>";
 
     Object.keys(apiList).forEach(apiLabel => {

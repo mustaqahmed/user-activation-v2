@@ -8,15 +8,15 @@
   <title>User Activation v2 with postMessages</title>
   <link rel="stylesheet" href="styles.css">
   <script src="common.js"></script>
-  <script src="api-selector.js"></script>
+  <script src="api-tester.js"></script>
   <script>
     function init() {
-      apiSelector.setup();
+      apiTester.setupApiCaller();
 
       window.addEventListener("message", (e) => {
         log("received: " + e.data, "yellow");
-        if (e.data === "call_test_api")
-          apiSelector.callAndLog();
+        if (e.data.startsWith("call_"))
+          apiTester.callApi(e.data.slice(5));
       });
     }
   </script>
@@ -32,17 +32,11 @@
       User Activation v2 works in each case.</p>
   </div>
 
-  <p>
-    <label>User-activation-gated API to test:</label>
-    <select id="test-api">
-    </select>
-  </p>
-
   <div class="api_target" id="test-api-target"></div>
 
   <h1>Top frame in mustaqahmed.github.io</h1>
 
-  <iframe id="iframe" src="https://eirage.github.io/user-activation-v2/api-consistency/postMessages-sub.html"></iframe>
+  <iframe src="https://eirage.github.io/user-activation-v2/api-consistency/postMessages-sub.html"></iframe>
 
   <div id="log"><b>Log:</b> </div>
 </body>

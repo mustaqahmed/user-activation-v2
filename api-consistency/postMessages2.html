@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<!--
+  The cross-origin part of this demo is here:
+  https://eirage.github.io/user-activation-v2/api-consistency/postMessages2-sub.html
+-->
+<html>
+<head>
+  <title>User Activation v2 with parent-to-child postMessages</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="common.js"></script>
+  <script src="api-tester.js"></script>
+  <script>
+    function sendThreeMessages(apiReqIndex) {
+      console.log("subframe posting messages");
+      let apiReqString = "call_" + apiTester.getSelectedApi();
+      for (let i = 0; i < 3; i++) {
+        let dummyString = "message_" + i;
+        let msg = (i == apiReqIndex) ? apiReqString : dummyString;
+        frames[0].postMessage(msg, "*");
+      }
+    }
+
+    function init() {
+      apiTester.setupApiSelector();
+
+      for (let i = 0; i < 3; i++) {
+        document.getElementById("button" + i)
+            .addEventListener("click", () => sendThreeMessages(i));
+      }
+    }
+  </script>
+</head>
+<body onload="init()">
+  <div class="instruction">
+    <p><b>Steps:</b>&ensp;
+      (a) Select an API to test.&ensp;
+      (b) Click the button in the subframe to pick which message requests the test API.
+    </p>
+    <p><b>Expectation:</b> None of those buttons should successsfully call the test API.
+      User Activation v2 works in each case.</p>
+  </div>
+
+  <h1>mustaqahmed.github.io</h1>
+
+  <p>
+    <label>User-activation-gated API to test:</label>
+    <select id="test-api">
+    </select>
+  </p>
+
+  <p>
+    <div>Each button below sends three messages:</div>
+    <div>
+      <input id="button0" type="button" value="Button 0" />
+      requests in first message.
+    </div>
+    <div>
+      <input id="button1" type="button" value="Button 1" />
+      requests in second message.
+    </div>
+    <div>
+      <input id="button2" type="button" value="Button 2" />
+      requests in third message.
+    </div>
+  </p>
+
+  <iframe src="https://eirage.github.io/user-activation-v2/api-consistency/postMessages2-sub.html"></iframe>
+</body>
+</html>

@@ -96,7 +96,7 @@
   function public_setupApiCaller() {
     const apiTargetElem = $("api-test-area");
     apiTargetElem.innerHTML = "<div>" +
-	"<strong>API test area.  Do not interact with anything here.</strong>" +
+	"<strong>Do not interact with anything inside this green rectangle.</strong>" +
 	"</div>";
 
     Object.keys(apiList).forEach(apiLabel => {

@@ -123,7 +123,8 @@
     const apiTargetElem = $("api-test-area");
     apiTargetElem.innerHTML = "<div>" +
         "<strong>Do not interact with anything inside this green rectangle.</strong>" +
-        "</div>";
+        "</div>" +
+        "<hr>";
 
     Object.keys(apiList).forEach(apiLabel => {
       let targetInnerHtml = apiList[apiLabel].targetInnerHtml;

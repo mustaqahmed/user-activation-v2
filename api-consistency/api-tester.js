@@ -58,6 +58,32 @@
           "</audio>",
     },
 
+    "input-type-file": {
+      promise: elem => {
+        return new Promise((resolve, reject) => {
+          elem.click();
+          if (confirm("Did you just see a file dialog?"))
+            resolve();
+          else
+            reject();
+        });
+      },
+      targetInnerHtml: "<input type='file' />",
+    },
+
+    "input-type-color": {
+      promise: elem => {
+        return new Promise((resolve, reject) => {
+          elem.click();
+          if (confirm("Did you just see a color-picker dialog?"))
+            resolve();
+          else
+            reject();
+        });
+      },
+      targetInnerHtml: "<input type='color' /> Pick any color.",
+    },
+
   }; //  apiList
 
 

@@ -11,51 +11,51 @@
 
     "window.open": {
       promise: () => {
-	return new Promise((resolve, reject) => {
-	  if (window.open("about:blank"))
+        return new Promise((resolve, reject) => {
+          if (window.open("about:blank"))
             resolve();
-	  else
+          else
             reject();
-	});
+        });
       },
       targetInnerHtml: undefined,
     },
 
     "elem.requestFullscreen": {
       promise: elem => {
-	if (elem.requestFullscreen) {
-	  return elem.requestFullscreen();
-	} else if (elem.mozRequestFullScreen) { /* Firefox */
-	  return elem.mozRequestFullScreen();
-	} else if (elem.webkitRequestFullscreen) { /* Safari */
-	  return elem.webkitRequestFullscreen();
-	} else if (elem.msRequestFullscreen) { /* IE/Edge */
-	  return elem.msRequestFullscreen();
-	}
+        if (elem.requestFullscreen) {
+          return elem.requestFullscreen();
+        } else if (elem.mozRequestFullScreen) { /* Firefox */
+          return elem.mozRequestFullScreen();
+        } else if (elem.webkitRequestFullscreen) { /* Safari */
+          return elem.webkitRequestFullscreen();
+        } else if (elem.msRequestFullscreen) { /* IE/Edge */
+          return elem.msRequestFullscreen();
+        }
       },
       targetInnerHtml: "This div would go fullscreen.",
     },
 
     "navigator.vibrate": {
       promise: () => {
-	return new Promise((resolve, reject) => {
-	  if (navigator.vibrate(100))
+        return new Promise((resolve, reject) => {
+          if (navigator.vibrate(100))
             resolve();
-	  else
+          else
             reject();
-	});
+        });
       },
       targetInnerHtml: undefined,
     },
 
     "audio.play": {
       promise: elem => {
-	return elem.play();
+        return elem.play();
       },
       targetInnerHtml: "<audio controls " +
-	  "src='https://interactive-examples.mdn.mozilla.net/media/examples/t-rex-roar.mp3'>" +
-	  "Audio is not supported." +
-	  "</audio>",
+          "src='https://interactive-examples.mdn.mozilla.net/media/examples/t-rex-roar.mp3'>" +
+          "Audio is not supported." +
+          "</audio>",
     },
 
   }; //  apiList
@@ -96,17 +96,17 @@
   function public_setupApiCaller() {
     const apiTargetElem = $("api-test-area");
     apiTargetElem.innerHTML = "<div>" +
-	"<strong>Do not interact with anything inside this green rectangle.</strong>" +
-	"</div>";
+        "<strong>Do not interact with anything inside this green rectangle.</strong>" +
+        "</div>";
 
     Object.keys(apiList).forEach(apiLabel => {
       let targetInnerHtml = apiList[apiLabel].targetInnerHtml;
       if (targetInnerHtml) {
-	// Add a target div.
-	let apiTargetDiv = document.createElement("div");
-	apiTargetDiv.id = labelToTargetId(apiLabel);
-	apiTargetDiv.innerHTML = targetInnerHtml;
-	apiTargetElem.appendChild(apiTargetDiv);
+        // Add a target div.
+        let apiTargetDiv = document.createElement("div");
+        apiTargetDiv.id = labelToTargetId(apiLabel);
+        apiTargetDiv.innerHTML = targetInnerHtml;
+        apiTargetElem.appendChild(apiTargetDiv);
       }
     });
   }
@@ -120,8 +120,8 @@
       apiCallElem = apiCallElem.firstElementChild;
 
     apiList[apiLabel].promise(apiCallElem)
-	.then(() => logApiSuccess(apiLabel))
-	.catch(() => logApiFailure(apiLabel));
+        .then(() => logApiSuccess(apiLabel))
+        .catch(() => logApiFailure(apiLabel));
   }
 
   function logApiSuccess(apiLabel) {

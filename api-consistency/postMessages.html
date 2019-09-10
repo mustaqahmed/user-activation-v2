@@ -14,7 +14,7 @@
       apiTester.setupApiCaller();
 
       window.addEventListener("message", (e) => {
-        log("received: " + e.data, "yellow");
+        log("received: " + e.data, "black");
         if (e.data.startsWith("call_"))
           apiTester.callApi(e.data.slice(5));
       });

@@ -19,7 +19,7 @@
 
       for (let i = 0; i < 3; i++) {
         $("button" + i).addEventListener("click", e => {
-          log(e.target.id + " clicked", "yellow");
+          log(e.target.id + " clicked", "black");
           callWithSetTimeoutChain(i+1);
         });
       }

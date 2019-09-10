@@ -149,11 +149,11 @@
   }
 
   function logApiSuccess(apiLabel) {
-    log(apiLabel + " success", "lightgreen");
+    log(apiLabel + " success", "green");
   }
 
   function logApiFailure(apiLabel) {
-    log(apiLabel + " failure", "lightpink");
+    log(apiLabel + " failure", "red");
   }
 
   function labelToTargetId(label) {

@@ -3,7 +3,7 @@ function $(id) {
 }
 
 function log(msg, color) {
-  var styleStr = "background-color:" + color;
+  var styleStr = "color:" + color;
   $("log").innerHTML += "<span class='log-entry' style='" + styleStr + "'>"
       + msg + "</span>";
 }

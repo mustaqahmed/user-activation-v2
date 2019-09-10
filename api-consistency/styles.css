@@ -39,5 +39,6 @@ iframe {
 }
 
 .log-entry {
+  border: 1px solid lightgrey;
   margin: 3px;
 }

@@ -137,16 +137,23 @@ Chromium after a few (mostly minor) changes.
 
 ## Demo
 
-For the demo, first enable UAv2 in the latest Chrome (M67+) through
-`chrome://flags/#user-activation-v2` or the command-line flag
-`--enable-features=UserActivationV2`.
+Compare these demos in Chrome 72+ vs. in all other browsers to see why UAv2
+makes sense.
 
-- [Activation propagation
-  demo](https://mustaqahmed.github.io/user-activation-v2/propagation/): Shows
-  UAv2 state changes across the frame tree through user interaction and
-  subsequent consumption through popups.
+- User activation propagation in the frame tree:
 
-- Consistent availability of user activation state:
+  - [Live UAv2 states in the frame
+    tree](https://mustaqahmed.github.io/user-activation-v2/propagation-live/):
+    Shows live UAv2 state changes across the frame tree.  Sorry, works only in
+    Chrome because of [this
+    feature](https://github.com/dtapuska/useractivation).
+
+  - [Test activation propagation with
+    popups](https://mustaqahmed.github.io/user-activation-v2/propagation/): Shows
+    how UAv2 states change across the frame tree through user interaction and
+    subsequent consumption through popups.
+
+- Consistent availability of user activation state through API chaining:
 
   - [UAv2 with
     setTimeouts](https://mustaqahmed.github.io/user-activation-v2/api-consistency/setTimeout.html):

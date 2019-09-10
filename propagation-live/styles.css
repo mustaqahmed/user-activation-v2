@@ -1,0 +1,17 @@
+iframe {
+  width: 45%;
+  height: 500px;
+  border: 2px solid;
+  margin: 5px;
+}
+
+h1 {
+  text-align: center;
+  color: lightgrey;
+}
+
+#instruction {
+  border: 1px solid grey;
+  background-color: lightgrey;
+  padding: 1px;
+}

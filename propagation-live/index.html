@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<!--
+  The cross-origin parts of this demo is here:
+  https://eirage.github.io/user-activation-v2/propagation-live/
+-->
+<html>
+<head>
+  <title>User activation propagation</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="common.js"></script>
+</head>
+<body onload="commonInit('a')">
+  <div id="instruction">
+    <p><b>Test instruction:</b>&ensp;
+      1.&nbsp;Click on any title to activate the frame.&emsp;
+      2.&nbsp;Watch current activation state "icons" in all frames.<p>
+    <p><b>Legend:</b>&ensp;
+      Green title: currently active.  Green title background: has been active.
+  </div>
+
+  <h1 id="frame-label">Frame</h1>
+  <iframe src="subframeA1.html" style="height: 200px;"></iframe>
+  <iframe src="https://www.example.com" style="border: 2px solid blue;"></iframe>
+</body>
+</html>

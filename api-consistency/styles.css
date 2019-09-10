@@ -15,10 +15,9 @@ h1, h2 {
 }
 
 #api-elem-area {
-  border: 1px solid darkgrey;
   color: grey;
   margin: 5px;
-  padding: 15px;
+  padding: 10px;
 }
 
 .api-elem-area-entry {

@@ -17,5 +17,5 @@ function commonInit(label) {
   frameLabel = label;
   $("frame-label").innerHTML += " " + label;
 
-  setInterval(refreshStateIndicators, 500);
+  setInterval(refreshStateIndicators, 100);
 }

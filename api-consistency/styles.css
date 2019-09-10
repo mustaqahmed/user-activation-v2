@@ -1,11 +1,11 @@
-iframe {
-  border: 2px solid grey;
-  height: 250px;
-  width: 100%;
+h2 {
+  color: #ffb0b0;
 }
 
-h1, h2 {
-  color: grey;
+iframe {
+  border: 2px solid #ffb0b0;
+  height: 250px;
+  width: 100%;
 }
 
 #instruction {

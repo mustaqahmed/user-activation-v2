@@ -120,11 +120,7 @@
   // API caller interface.
 
   function public_setupApiCaller() {
-    const apiTargetElem = $("api-test-area");
-    apiTargetElem.innerHTML = "<div>" +
-        "<strong>Do not interact with anything inside this green rectangle.</strong>" +
-        "</div>" +
-        "<hr>";
+    const apiTargetElem = $("api-elem-area");
 
     Object.keys(apiList).forEach(apiLabel => {
       let targetInnerHtml = apiList[apiLabel].targetInnerHtml;
@@ -132,6 +128,7 @@
         // Add a target div.
         let apiTargetDiv = document.createElement("div");
         apiTargetDiv.id = labelToTargetId(apiLabel);
+        apiTargetDiv.className = "api-elem-area-entry";
         apiTargetDiv.innerHTML = targetInnerHtml;
         apiTargetElem.appendChild(apiTargetDiv);
       }

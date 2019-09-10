@@ -1,26 +1,44 @@
 iframe {
-  border: 2px solid blue;
+  border: 2px solid grey;
   height: 250px;
-  width: 90%;
+  width: 100%;
+}
+
+h1, h2 {
+  color: grey;
+}
+
+#instruction {
+  background-color: #ffff80;
+  margin: 5px;
+  padding: 5px;
+}
+
+#api-elem-area {
+  border: 1px solid darkgrey;
+  color: grey;
+  margin: 5px;
+  padding: 15px;
+}
+
+.api-elem-area-entry {
+  border: 1px dotted darkgrey;
+  display: inline;
+  margin: 3px;
+}
+
+#user-interaction-area {
+  border: 1px solid green;
+  background-color: #e0ffe0;
+  color: green;
+  margin: 5px;
+  padding: 5px;
 }
 
 #log {
-  border: 1px solid black;
   margin: 5px;
 }
 
 .log-entry {
   margin: 3px;
-}
-
-.instruction {
-  background-color: #ffff60;
-  padding: 5px;
-}
-
-#api-test-area {
-  border: 1px solid green;
-  color: grey;
-  margin: 15px;
-  padding: 15px;
 }

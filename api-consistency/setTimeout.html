@@ -27,36 +27,39 @@
   </script>
 </head>
 <body onload="init()">
-  <div id="api-test-area"></div>
-
-  <div class="instruction">
-    <p><b>Steps:</b>&ensp;
-      (a) Select a test API in the dropdown list below.&ensp;
-      (b) Click any button to test desired setTimeout call depth.</p>
+  <div id="instruction">
+    <p><b>Test instruction:</b>&ensp;
+      Within the green area:&ensp;
+      (a) Select a test API.&ensp;
+      (b) Click the button for desired setTimeout call depth.</p>
     <p><b>Expectation:</b> Any of these buttons should successsfully call the test API.
       User Activation v2 works in each case.</p>
   </div>
 
-  <p>
-    <label>User-activation-gated API to test:</label>
-    <select id="test-api">
-    </select>
-  </p>
+  <div id="api-elem-area"></div>
 
-  <p>
-    <input id="button0" type="button" value="Button 0" />
-    tests through a setTimeout() call.
-  </p>
+  <div id="user-interaction-area">
+    <p>
+      <label>User-activation-gated API to test:</label>
+      <select id="test-api">
+      </select>
+    </p>
 
-  <p>
-    <input id="button1" type="button" value="Button 1" />
-    tests through setTimeout() calls of depth 2.
-  </p>
+    <p>
+      <input id="button0" type="button" value="Button 0" />
+      tests through a setTimeout() call.
+    </p>
 
-  <p>
-    <input id="button2" type="button" value="Button 2" />
-    tests through setTimeout() calls of depth 3.
-  </p>
+    <p>
+      <input id="button1" type="button" value="Button 1" />
+      tests through setTimeout() calls of depth 2.
+    </p>
+
+    <p>
+      <input id="button2" type="button" value="Button 2" />
+      tests through setTimeout() calls of depth 3.
+    </p>
+  </div>
 
   <div id="log"><b>Log:</b> </div>
 </body>

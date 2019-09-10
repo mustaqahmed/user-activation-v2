@@ -31,39 +31,42 @@
   </script>
 </head>
 <body onload="init()">
-  <iframe src="https://eirage.github.io/user-activation-v2/api-consistency/postMessages2-sub.html"></iframe>
-
-  <div class="instruction">
-    <p><b>Steps:</b>&ensp;
-      (a) Select a test API in the dropdown list below.&ensp;
-      (b) Click any button to test the API through a desired message.
+  <div id="instruction">
+    <p><b>Test instruction:</b>&ensp;
+      Within the green area:&ensp;
+      (a) Select a test API.&ensp;
+      (b) Click the button for desired message sequence.
     </p>
-    <p><b>Expectation:</b> None of those buttons should successsfully call the test API.
+    <p><b>Expectation:</b> Any of these buttons should successsfully call the test API.
       User Activation v2 works in each case.</p>
   </div>
 
+  <iframe src="https://eirage.github.io/user-activation-v2/api-consistency/postMessages2-sub.html"></iframe>
+
   <h1>mustaqahmed.github.io</h1>
 
-  <p>
-    <label>User-activation-gated API to test:</label>
-    <select id="test-api">
-    </select>
-  </p>
+  <div id="user-interaction-area">
+    <p>
+      <label>User-activation-gated API to test:</label>
+      <select id="test-api">
+      </select>
+    </p>
 
-  <p>
-    <div>Each button below sends three messages:</div>
-    <div>
-      <input id="button0" type="button" value="Button 0" />
-      requests in first message.
-    </div>
-    <div>
-      <input id="button1" type="button" value="Button 1" />
-      requests in second message.
-    </div>
-    <div>
-      <input id="button2" type="button" value="Button 2" />
-      requests in third message.
-    </div>
-  </p>
+    <p>
+      <div>Each button below sends three messages:</div>
+      <div>
+        <input id="button0" type="button" value="Button 0" />
+        requests in first message.
+      </div>
+      <div>
+        <input id="button1" type="button" value="Button 1" />
+        requests in second message.
+      </div>
+      <div>
+        <input id="button2" type="button" value="Button 2" />
+        requests in third message.
+      </div>
+    </p>
+  </div>
 </body>
 </html>

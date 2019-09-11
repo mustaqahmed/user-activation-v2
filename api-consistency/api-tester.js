@@ -84,6 +84,20 @@
       targetInnerHtml: "<input type='color' /> Pick any color.",
     },
 
+    "execCommand-copy": {
+      promise: elem => {
+        return new Promise((resolve, reject) => {
+          elem.focus();
+          elem.select();
+          if (document.execCommand("copy"))
+            resolve();
+          else
+            reject();
+        });
+      },
+      targetInnerHtml: "<input type='text' size='3' value='ABC' />",
+    },
+
   }; //  apiList
 
 

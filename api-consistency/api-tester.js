@@ -73,7 +73,7 @@
             reject();
         });
       },
-      targetInnerHtml: "<input type='text' size='3' value='ABC' />",
+      targetInnerHtml: "<input type='text' style='width: 3em' value='abc' />",
     },
 
     "navigator.vibrate": {

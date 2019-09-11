@@ -36,28 +36,6 @@
       targetInnerHtml: "This div would go fullscreen.",
     },
 
-    "navigator.vibrate": {
-      promise: () => {
-        return new Promise((resolve, reject) => {
-          if (navigator.vibrate(100))
-            resolve();
-          else
-            reject();
-        });
-      },
-      targetInnerHtml: undefined,
-    },
-
-    "audio.play": {
-      promise: elem => {
-        return elem.play();
-      },
-      targetInnerHtml: "<audio controls " +
-          "src='https://interactive-examples.mdn.mozilla.net/media/examples/t-rex-roar.mp3'>" +
-          "Audio is not supported." +
-          "</audio>",
-    },
-
     "input-type-file": {
       promise: elem => {
         return new Promise((resolve, reject) => {
@@ -81,7 +59,7 @@
             reject();
         });
       },
-      targetInnerHtml: "<input type='color' /> Pick any color.",
+      targetInnerHtml: "<input type='color' /> Color picker.",
     },
 
     "execCommand-copy": {
@@ -96,6 +74,28 @@
         });
       },
       targetInnerHtml: "<input type='text' size='3' value='ABC' />",
+    },
+
+    "navigator.vibrate": {
+      promise: () => {
+        return new Promise((resolve, reject) => {
+          if (navigator.vibrate(100))
+            resolve();
+          else
+            reject();
+        });
+      },
+      targetInnerHtml: undefined,
+    },
+
+    "audio.play": {
+      promise: elem => {
+        return elem.play();
+      },
+      targetInnerHtml: "<audio controls " +
+          "src='https://interactive-examples.mdn.mozilla.net/media/examples/t-rex-roar.mp3'>" +
+          "Audio is not supported." +
+          "</audio>",
     },
 
   }; //  apiList

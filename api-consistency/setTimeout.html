@@ -10,17 +10,17 @@
       if (depth <= 0)
         apiTester.callApi(apiTester.getSelectedApi());
       else
-        setTimeout(() => callWithSetTimeoutChain(depth-1), 100);
+        setTimeout(() => callWithSetTimeoutChain(depth - 1), 100);
     }
 
     function init() {
       apiTester.setupApiSelector();
       apiTester.setupApiCaller();
 
-      for (let i = 0; i < 3; i++) {
+      for (let i = 0; i < 4; i++) {
         $("button" + i).addEventListener("click", e => {
           log(e.target.id + " clicked", "black");
-          callWithSetTimeoutChain(i+1);
+          callWithSetTimeoutChain(i);
         });
       }
     }
@@ -47,19 +47,24 @@
 
     <p>
       <input id="button0" type="button" value="Button 0" />
-      tests through a setTimeout() call.
+      tests directly without setTimeout() (control).
     </p>
 
     <p>
       <input id="button1" type="button" value="Button 1" />
-      tests through setTimeout() calls of depth 2.
+      tests through a setTimeout() call.
     </p>
 
     <p>
       <input id="button2" type="button" value="Button 2" />
+      tests through setTimeout() calls of depth 2.
+    </p>
+
+    <p>
+      <input id="button3" type="button" value="Button 3" />
       tests through setTimeout() calls of depth 3.
     </p>
-  </div>
+</div>
 
   <div id="log"><b>Log:</b> </div>
 </body>

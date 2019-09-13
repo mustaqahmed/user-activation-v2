@@ -1,27 +1,28 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>User Activation v2 with setTimeout</title>
+  <title>User activation dependency test</title>
   <link rel="stylesheet" href="styles.css">
   <script src="common.js"></script>
   <script src="api-tester.js"></script>
   <script>
-    function callWithSetTimeout(delay) {
-      setTimeout(() => apiTester.callApi(apiTester.getSelectedApi()), delay);
-    }
-
     function init() {
       apiTester.setupApiSelector();
       apiTester.setupApiCaller();
 
-      let delays = [0, 101, 5050, 10100];
+      let delays = [0, 1100, 5100];
 
       for (let i = 0; i < 4; i++) {
         $("button" + i).addEventListener("click", e => {
           log(e.target.id + " clicked", "black");
-          callWithSetTimeout(delays[i]);
+          if (i < 3)
+            setTimeout(() => apiTester.callApi(apiTester.getSelectedApi()), delays[i]);
+          else
+            apiTester.callApi(apiTester.getSelectedApi());
         });
       }
+
+        apiTester.callApi(apiTester.getSelectedApi());
     }
   </script>
 </head>
@@ -30,8 +31,10 @@
     <p><b>Test instruction:</b>&ensp;
       Never interact outside the green area:&ensp;
       (a) Select a test API.&ensp;
-      (b) Click the button for desired setTimeout delay.</p>
+      (b) Click the button for desired setTimeout delay.
+      (c) Reload the page using address bar.</p>
     <p><b>Expectation:</b> Any of these buttons should successsfully call the test API.
+      But reloading shouldn't.
       User Activation v2 works in each case.</p>
   </div>
 
@@ -46,24 +49,24 @@
 
     <p>
       <input id="button0" type="button" value="Button 0" />
-      tests with a setTimeout() delay of 0ms.
+      tests with a setTimeout() delay of 0sec.
     </p>
 
     <p>
       <input id="button1" type="button" value="Button 1" />
-      tests with a setTimeout() delay of 101ms.
+      tests with a setTimeout() delay of 1.1sec.
     </p>
 
     <p>
       <input id="button2" type="button" value="Button 2" />
-      tests with a setTimeout() delay of 5050ms.
+      tests with a setTimeout() delay of 5.1s.
     </p>
 
     <p>
       <input id="button3" type="button" value="Button 3" />
-      tests with a setTimeout() delay of 10100ms.
+      tests without a setTimeout() call.
     </p>
-</div>
+  </div>
 
   <div id="log"><b>Log:</b> </div>
 </body>

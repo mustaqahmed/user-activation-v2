@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>User Activation v2 with setTimeout</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="common.js"></script>
+  <script src="api-tester.js"></script>
+  <script>
+    function callWithSetTimeout(delay) {
+      setTimeout(() => apiTester.callApi(apiTester.getSelectedApi()), delay);
+    }
+
+    function init() {
+      apiTester.setupApiSelector();
+      apiTester.setupApiCaller();
+
+      let delays[] = [0, 101, 5050, 10100];
+
+      for (let i = 0; i < 4; i++) {
+        $("button" + i).addEventListener("click", e => {
+          log(e.target.id + " clicked", "black");
+          callWithSetTimeout(delays[i]);
+        });
+      }
+    }
+  </script>
+</head>
+<body onload="init()">
+  <div id="instruction">
+    <p><b>Test instruction:</b>&ensp;
+      Never interact outside the green area:&ensp;
+      (a) Select a test API.&ensp;
+      (b) Click the button for desired setTimeout delay.</p>
+    <p><b>Expectation:</b> Any of these buttons should successsfully call the test API.
+      User Activation v2 works in each case.</p>
+  </div>
+
+  <div id="api-elem-area"></div>
+
+  <div id="user-interaction-area">
+    <p>
+      <label>User-activation-gated API to test:</label>
+      <select id="test-api">
+      </select>
+    </p>
+
+    <p>
+      <input id="button0" type="button" value="Button 0" />
+      tests with a setTimeout() delay of 0ms.
+    </p>
+
+    <p>
+      <input id="button1" type="button" value="Button 1" />
+      tests with a setTimeout() delay of 101ms.
+    </p>
+
+    <p>
+      <input id="button2" type="button" value="Button 2" />
+      tests with a setTimeout() delay of 5050ms.
+    </p>
+
+    <p>
+      <input id="button3" type="button" value="Button 3" />
+      tests with a setTimeout() delay of 10100ms.
+    </p>
+</div>
+
+  <div id="log"><b>Log:</b> </div>
+</body>
+</html>

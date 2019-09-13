@@ -10,19 +10,20 @@
       apiTester.setupApiSelector();
       apiTester.setupApiCaller();
 
-      let delays = [0, 1100, 5100];
+      let delays = [-1, 1100, 5100, 10100];
 
       for (let i = 0; i < 4; i++) {
         $("button" + i).addEventListener("click", e => {
           log(e.target.id + " clicked", "black");
-          if (i < 3)
-            setTimeout(() => apiTester.callApi(apiTester.getSelectedApi()), delays[i]);
-          else
+          if (i == 0)
             apiTester.callApi(apiTester.getSelectedApi());
+          else
+            setTimeout(() => apiTester.callApi(apiTester.getSelectedApi()), delays[i]);
         });
       }
 
-        apiTester.callApi(apiTester.getSelectedApi());
+      log("onload event", "black");
+      apiTester.callApi(apiTester.getSelectedApi());
     }
   </script>
 </head>
@@ -32,9 +33,9 @@
       Never interact outside the green area:&ensp;
       (a) Select a test API.&ensp;
       (b) Click the button for desired setTimeout delay.
-      (c) Reload the page using address bar.</p>
-    <p><b>Expectation:</b> Any of these buttons should successsfully call the test API.
-      But reloading shouldn't.
+      (c) Also: reload the page to try the API w/o interaction.</p>
+    <p><b>Expectation:</b> All the buttons should successsfully call the test API,
+      and reloading shouldn't.
       User Activation v2 works in each case.</p>
   </div>
 
@@ -49,7 +50,7 @@
 
     <p>
       <input id="button0" type="button" value="Button 0" />
-      tests with a setTimeout() delay of 0sec.
+      tests without a setTimeout() call.
     </p>
 
     <p>
@@ -59,12 +60,12 @@
 
     <p>
       <input id="button2" type="button" value="Button 2" />
-      tests with a setTimeout() delay of 5.1s.
+      tests with a setTimeout() delay of 5.1sec.
     </p>
 
     <p>
       <input id="button3" type="button" value="Button 3" />
-      tests without a setTimeout() call.
+      tests with a setTimeout() delay of 10.1sec.
     </p>
   </div>
 

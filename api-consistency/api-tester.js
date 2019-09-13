@@ -98,6 +98,28 @@
           "</audio>",
     },
 
+    "navigator.share": {
+      promise: () => {
+        return new Promise((resolve, reject) => {
+          let data = {title: "Example", text: "Example", url: "https://www.example.com"};
+          if (navigator.share(data))
+            resolve();
+          else
+            reject();
+        });
+      },
+      targetInnerHtml: undefined,
+    },
+
+    "navigator.geolocation": {
+      promise: () => {
+        return new Promise((resolve, reject) => {
+          navigator.geolocation.getCurrentPosition(resolve, reject);
+        });
+      },
+      targetInnerHtml: undefined,
+    },
+
   }; //  apiList
 
 

@@ -49,6 +49,19 @@
       targetInnerHtml: "<input type='file' />",
     },
 
+    "input-type-date": {
+      promise: elem => {
+        return new Promise((resolve, reject) => {
+          elem.click();
+          if (confirm("Did you just see a date-picker dialog?"))
+            resolve();
+          else
+            reject();
+        });
+      },
+      targetInnerHtml: "<input type='date' />",
+    },
+
     "input-type-color": {
       promise: elem => {
         return new Promise((resolve, reject) => {
@@ -59,7 +72,7 @@
             reject();
         });
       },
-      targetInnerHtml: "<input type='color' /> Color picker.",
+      targetInnerHtml: "<input type='color' />",
     },
 
     "execCommand-copy": {

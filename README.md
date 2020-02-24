@@ -30,7 +30,7 @@ in Chrome are user activation gated.
 
 The Web is in a terrible state today in terms of user activation behavior.
 Because each browser has incrementally added user activation dependence to it's
-own set of APIs a course of many years, we see widely divergent behavior among
+own set of APIs over a course of many years, we see widely divergent behavior among
 major browsers.  For example, pop-blocking behavior is [inconsistent among major
 browsers](https://docs.google.com/document/d/1hYRTEkfWDl-KO4Y6cG469FBC3nyBy9_SYItZ1EEsXUA/edit?usp=sharing)
 for all non-trivial cases of user activation.

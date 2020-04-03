@@ -133,6 +133,19 @@
       targetInnerHtml: undefined,
     },
 
+    "download-link": {
+      promise: elem => {
+        return new Promise((resolve, reject) => {
+          elem.click();
+          if (confirm("Did you just see a file being downloaded?"))
+            resolve();
+          else
+            reject();
+        });
+      },
+      targetInnerHtml: "<a download href='download-test.txt'>link</a>",
+    },
+
   }; //  apiList
 
 
@@ -211,7 +224,7 @@
 
   function initialize() {
     if (scope.apiTester)
-    return;
+      return;
 
     scope.apiTester = {
       setupApiSelector: public_setupApiSelector,

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<!--
+  The cross-origin part of this demo is here:
+  https://eirage.github.io/user-activation-v2/api-consistency/basic-sub.html
+-->
+<html>
+<head>
+  <title>User activation dependency test in cross-origin frames</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="instruction">
+    <p><b>Test instruction:</b>&ensp;
+      Never interact outside the green area:&ensp;
+      (a) Select a test API.&ensp;
+      (b) Click the button for desired setTimeout delay.
+      (c) Also: reload the page to try the API w/o interaction.</p>
+    <p><b>Expectation:</b> All the buttons should successsfully call the test API,
+      and reloading shouldn't.
+      User Activation v2 works in each case.</p>
+  </div>
+
+  <iframe src="https://eirage.github.io/user-activation-v2/api-consistency/basic-sub.html"></iframe>
+</body>
+</html>

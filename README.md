@@ -1,6 +1,12 @@
 # User Activation v2 (UAv2)
 A frame-hierarchy based model to track active user interaction.
 
+**Status:** This proposal is now part of the HTML spec (see the section on
+[tracking user
+activation](https://html.spec.whatwg.org/multipage/interaction.html#tracking-user-activation)),
+and has shipped in [Chrome
+72](https://www.chromestatus.com/feature/5722065667620864).
+
 
 ## Introduction
 

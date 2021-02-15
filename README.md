@@ -123,7 +123,7 @@ dependence" on user activation (from strongest to weakest):
   they consume the bit in each call to prevent multiple calls per user
   activation.
   E.g. [`window.open()`](https://developer.mozilla.org/en-US/docs/Web/API/Window/open)
-  is most (all?)  browsers today.
+  in most (all?)  browsers today.
 
 - Transient activation gated APIs: These APIs require the transient bit but
   don't consume it, so multiple calls are allowed per user activation until the
